@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SDS WRITER, LLC | Global SDS Authoring Center</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; color: #333333; background-color: #ffffff; line-height: 1.6; }
+        a { color: inherit; text-decoration: none; }
+        a.underline { text-decoration: underline; }
+        .container { max-width: 1140px; margin: 0 auto; padding: 0 20px; }
+
+        /* Top Info Utility Bar */
+        .top-bar { background-color: #012433; color: #d1d5db; font-size: 12px; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .top-bar-flex { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .top-bar-contact { display: flex; gap: 20px; }
+        .top-bar-contact span { display: inline-flex; align-items: center; gap: 6px; }
+        .top-bar-badge { background-color: rgba(245, 184, 19, 0.2); color: #f5b813; padding: 2px 8px; border-radius: 3px; font-weight: bold; }
+
+        /* Main Header & Nav */
+        header.site-header { background-color: #ffffff; border-bottom: 1px solid #eaeaea; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.03); }
+        .header-inner { display: flex; justify-content: space-between; align-items: center; height: 85px; }
+        
+        /* New Custom LOGO Styles matching image */
+        .logo-wrapper { display: flex; align-items: center; gap: 12px; cursor: pointer; }
+        .logo-svg { width: 50px; height: 42px; flex-shrink: 0; }
+        .logo-text { font-size: 32px; font-weight: 800; color: #023a4d; letter-spacing: -0.5px; font-family: Arial, Helvetica, sans-serif; }
+
+        nav.main-nav { display: flex; align-items: center; gap: 25px; }
+        nav.main-nav ul { display: flex; list-style: none; gap: 25px; align-items: center; }
+        nav.main-nav a { font-size: 13px; font-weight: bold; letter-spacing: 0.5px; color: #4a5568; text-transform: uppercase; transition: color 0.2s; }
+        nav.main-nav a:hover, nav.main-nav a.active { color: #00607a; }
+        
+        .btn-header-quote { background-color: #023a4d; color: #ffffff !important; padding: 10px 20px; border-radius: 4px; font-size: 12px; font-weight: bold; transition: background-color 0.2s; }
+        .btn-header-quote:hover { background-color: #00607a; }
+
+        /* Hero */
+        .hero { background: linear-gradient(rgba(1, 36, 51, 0.88), rgba(1, 36, 51, 0.88)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><rect width="100" height="100" fill="%23222"/></svg>') center/cover; color: #ffffff; text-align: center; padding: 90px 20px; }
+        .hero h1 { font-size: 42px; font-weight: 800; letter-spacing: 1px; margin-bottom: 15px; text-transform: uppercase; }
+        .hero p { font-size: 22px; font-weight: 600; margin-bottom: 30px; color: #f1f2f6; }
+        
+        .btn-primary { display: inline-flex; align-items: center; gap: 8px; background-color: #00607a; color: #ffffff; padding: 12px 28px; border-radius: 4px; font-weight: bold; font-size: 15px; border: none; cursor: pointer; }
+        .btn-primary:hover { background-color: #023a4d; }
+        .btn-outline { display: inline-block; width: 100%; padding: 10px 0; border: 1px solid #023a4d; color: #023a4d; border-radius: 4px; font-weight: bold; font-size: 14px; text-align: center; }
+        .btn-outline:hover { background-color: #023a4d; color: #ffffff; }
+
+        /* Sections */
+        .cards-section { padding: 60px 0; background-color: #ffffff; }
+        .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .card { border: 1px solid #e1e8ed; border-radius: 6px; padding: 30px 25px; text-align: center; background-color: #ffffff; display: flex; flex-direction: column; justify-content: space-between; }
+        .card-image-placeholder { width: 100%; height: 160px; background-color: #f1f5f9; border-radius: 4px; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; color: #94a3b8; }
+        .card h2 { font-size: 22px; color: #023a4d; margin-bottom: 15px; }
+        .card p { font-size: 15px; color: #555555; margin-bottom: 15px; text-align: justify; }
+        .card .learn-more { display: inline-block; color: #00607a; text-decoration: underline; font-weight: bold; font-size: 15px; margin-bottom: 20px; }
+        .card-divider { height: 1px; background-color: #e1e8ed; margin: 15px 0 20px 0; }
+
+        .industries-section { padding: 50px 0; background-color: #f8fafc; }
+        .section-title-teal { font-size: 22px; color: #00607a; font-weight: bold; margin-bottom: 15px; }
+        .industries-desc { font-size: 18px; color: #475569; text-align: justify; margin-bottom: 30px; line-height: 1.7; }
+        .industries-list-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px 30px; margin-bottom: 35px; }
+        .industries-list-grid ul { list-style-type: disc; padding-left: 20px; }
+        .industries-list-grid li { font-size: 15px; font-style: italic; color: #334155; margin-bottom: 8px; }
+        .industries-images { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .industry-img { height: 140px; background-color: #cbd5e1; border-radius: 4px; width: 100%; }
+
+        .offer-section { padding: 60px 0; background-color: #ffffff; }
+        .offer-text { font-size: 18px; color: #334155; text-align: justify; line-height: 1.7; margin-bottom: 20px; }
+        .offer-heading { font-size: 22px; color: #00607a; font-weight: bold; text-align: center; margin: 30px 0 20px 0; }
+        .offer-list { list-style-type: disc; padding-left: 25px; margin-bottom: 35px; }
+        .offer-list li { font-size: 18px; color: #334155; margin-bottom: 12px; text-align: justify; }
+
+        .regional-section { padding: 60px 0; border-top: 1px solid #f1f5f9; }
+        .regional-title { font-size: 34px; color: #00607a; font-weight: bold; margin-bottom: 10px; }
+        .divider-line { width: 50px; height: 3px; background-color: #f5b813; margin-bottom: 25px; }
+        .reg-text { font-size: 17px; color: #334155; margin-bottom: 20px; line-height: 1.7; }
+        .reg-subheading { font-size: 20px; color: #00607a; font-weight: bold; margin: 25px 0 15px 0; }
+        .section-list { padding-left: 20px; margin-bottom: 30px; }
+        .section-list li { font-size: 16px; color: #334155; margin-bottom: 10px; line-height: 1.6; }
+
+        .diagram-box { background-color: #023a4d; color: #ffffff; padding: 30px; border-radius: 6px; max-width: 480px; margin: 40px auto; text-align: center; }
+        .diagram-box h3 { font-size: 20px; letter-spacing: 1px; margin-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 10px; }
+        .diagram-card { background-color: #ffffff; color: #023a4d; padding: 12px; margin-bottom: 12px; border-radius: 4px; font-weight: bold; font-size: 15px; }
+
+        .course-box { background-color: #f8fafc; border: 1px solid #cbd5e1; border-radius: 12px; padding: 30px; display: flex; gap: 25px; align-items: center; margin-top: 40px; }
+        .course-img { width: 100px; height: 100px; flex-shrink: 0; }
+        .course-content h3 { font-family: 'Times New Roman', serif; font-size: 22px; color: #00607a; margin-bottom: 10px; }
+
+        /* Professional Fat Footer */
+        footer.site-footer { background-color: #012433; color: #a0aec0; padding: 50px 0 20px 0; font-size: 14px; margin-top: 40px; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 2fr; gap: 40px; margin-bottom: 40px; }
+        .footer-col h4 { color: #ffffff; font-size: 16px; font-weight: bold; margin-bottom: 18px; border-bottom: 2px solid #f5b813; display: inline-block; padding-bottom: 5px; }
+        .footer-col p { margin-bottom: 10px; line-height: 1.6; }
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: 8px; }
+        .footer-col a:hover { color: #ffffff; text-decoration: underline; }
+        
+        .contact-info-list li { display: flex; gap: 10px; margin-bottom: 12px; }
+        .contact-info-list svg { width: 18px; height: 18px; fill: #f5b813; flex-shrink: 0; margin-top: 3px; }
+
+        .confidential-badge { background-color: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 15px; border-radius: 6px; margin-top: 15px; }
+        .confidential-badge h5 { color: #ffffff; font-size: 13px; font-weight: bold; margin-bottom: 5px; }
+        .confidential-badge p { font-size: 12px; color: #cbd5e1; margin-bottom: 0; }
+
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: #718096; }
+        .footer-bottom a { color: #a0aec0; text-decoration: underline; margin-left: 15px; }
+    </style>
+</head>
+<body>
+
+    <!-- Top Info Utility Bar -->
+    <div class="top-bar">
+        <div class="container top-bar-flex">
+            <div class="top-bar-contact">
+                <span>
+                    <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 2.62 4.21 5.45 5.65l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                    <strong>Call Us:</strong> (650) 457-0571
+                </span>
+                <span>
+                    <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    <strong>Email:</strong> info@sdswriter.org
+                </span>
+            </div>
+            <div>
+                <span class="top-bar-badge">PhD Chemists Authoring</span>
+                <span style="margin-left: 10px;">OSHA & GHS Compliant SDS / MSDS Services</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header class="site-header">
+        <div class="container header-inner">
+            
+            <!-- Custom Recreated Logo from image_566213 -->
+            <div class="logo-wrapper" onclick="window.location.href='index.html'">
+                <svg class="logo-svg" viewBox="0 0 200 160">
+                    <!-- Bottom / Back Layer Paper -->
+                    <path d="M 30,50 L 30,130 C 30,145 100,165 100,165 C 100,165 170,145 170,130 L 170,50 Z" fill="#00607a"/>
+                    <!-- Front Main Document Body -->
+                    <path d="M 50,20 L 50,115 C 50,130 100,148 100,148 C 100,148 150,130 150,115 L 150,20 Z" fill="#023a4d"/>
+                    <!-- Document Lines -->
+                    <rect x="70" y="42" width="60" height="6" rx="3" fill="#ffffff"/>
+                    <rect x="70" y="58" width="60" height="6" rx="3" fill="#ffffff"/>
+                    <rect x="70" y="74" width="60" height="6" rx="3" fill="#ffffff"/>
+                    <rect x="70" y="90" width="36" height="6" rx="3" fill="#ffffff"/>
+                    <!-- Yellow Warning Triangle Overlay -->
+                    <polygon points="160,10 188,48 132,48" fill="#f5b813" stroke="#ffffff" stroke-width="3" stroke-linejoin="round"/>
+                    <text x="160" y="42" font-family="Arial, sans-serif" font-weight="900" font-size="28" fill="#023a4d" text-anchor="middle">!</text>
+                </svg>
+                <span class="logo-text">sdswriter</span>
+            </div>
+
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html" class="active">HOME</a></li>
+                    <li><a href="who-we-are.html">WHO WE ARE</a></li>
+                    <li><a href="services.html">SERVICES</a></li>
+                    <li><a href="news.html">NEWS</a></li>
+                    <li><a href="contact.html">CONTACT US</a></li>
+                    <li><a href="contact.html" class="btn-header-quote">GET A QUOTE</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <section class="hero">
+        <div class="container">
+            <h1>GLOBAL SDS AUTHORING CENTER</h1>
+            <p>We create compliant and affordable Safety Data Sheets (SDS / MSDS)</p>
+            <a href="services.html" class="btn-primary">Learn More &gt;</a>
+        </div>
+    </section>
+
+    <section class="cards-section">
+        <div class="container cards-grid">
+            <div class="card">
+                <div>
+                    <div class="card-image-placeholder">
+                        <svg width="48" height="48" fill="currentColor" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+                    </div>
+                    <h2>SDS Creation</h2>
+                    <p>Creation of affordable and fully compliant Safety Data Sheets (SDS/MSDS) for all types of products with fast turnaround times</p>
+                    <a href="services.html" class="learn-more">Learn more</a>
+                </div>
+                <div>
+                    <div class="card-divider"></div>
+                    <a href="contact.html" class="btn-outline">Contact</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div>
+                    <div class="card-image-placeholder">
+                        <svg width="48" height="48" fill="currentColor" viewBox="0 0 24 24"><path d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"/></svg>
+                    </div>
+                    <h2>SDS Translation</h2>
+                    <p>Translation of Safety Data Sheets (SDS/MSDS) to multiple languages as usually required by foreign national regulations</p>
+                    <a href="services.html" class="learn-more">Learn more</a>
+                </div>
+                <div>
+                    <div class="card-divider"></div>
+                    <a href="contact.html" class="btn-outline">Contact</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div>
+                    <div class="card-image-placeholder">
+                        <svg width="48" height="48" fill="currentColor" viewBox="0 0 24 24"><path d="M21 10.12h-6.78l2.74-2.82c-2.73-2.7-7.15-2.8-9.88-.1-2.73 2.71-2.73 7.08 0 9.79s7.15 2.71 9.88 0c1.37-1.35 2.05-3.09 2.05-4.83h2.43c0 2.36-.93 4.72-2.79 6.52-3.69 3.63-9.67 3.63-13.36 0-3.69-3.63-3.69-9.51 0-13.14 3.69-3.63 9.67-3.63 13.36 0L21 3v7.12z"/></svg>
+                    </div>
+                    <h2>SDS Update</h2>
+                    <p>Update Safety Data Sheets (SDS/MSDS) to remain in compliance with current national regulations. Conversion of old MSDS to SDS</p>
+                    <a href="services.html" class="learn-more">Learn More</a>
+                </div>
+                <div>
+                    <div class="card-divider"></div>
+                    <a href="contact.html" class="btn-outline">Contact</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="industries-section">
+        <div class="container">
+            <h2 class="section-title-teal">Industries Served</h2>
+            <p class="industries-desc">
+                The highly qualified chemistry experts at Global SDS Authoring Center create and update SDS (MSDS) documents for a variety of industries. Our commitment to high quality, reliability, fast turnaround times, and excellent customer service meets the demands of modern, fast-paced companies. We accept orders from businesses of all sizes, ranging from small startup companies to large corporations requiring SDS creation for just one to hundreds of products.
+            </p>
+
+            <div class="industries-list-grid">
+                <ul>
+                    <li>Automotive</li>
+                    <li>Oil & Gas</li>
+                    <li>Chemical Manufacturing</li>
+                    <li>Pharmaceuticals and Healthcare</li>
+                </ul>
+                <ul>
+                    <li>Lubricants</li>
+                    <li>Paints & Coatings</li>
+                    <li>Personal Care & Cosmetics</li>
+                    <li>Consumer Products</li>
+                </ul>
+                <ul>
+                    <li>Food & Beverage</li>
+                    <li>Speciality Products</li>
+                    <li>Agriculture</li>
+                    <li>Construction</li>
+                </ul>
+            </div>
+
+            <div class="industries-images">
+                <div class="industry-img" style="background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="150"><rect width="300" height="150" fill="%23475569"/><text x="50%" y="50%" fill="%23fff" dominant-baseline="middle" text-anchor="middle">Heavy Industry / Machinery</text></svg>') center/cover;"></div>
+                <div class="industry-img" style="background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="150"><rect width="300" height="150" fill="%2300607a"/><text x="50%" y="50%" fill="%23fff" dominant-baseline="middle" text-anchor="middle">Paints & Chemicals</text></svg>') center/cover;"></div>
+                <div class="industry-img" style="background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="150"><rect width="300" height="150" fill="%23023a4d"/><text x="50%" y="50%" fill="%23fff" dominant-baseline="middle" text-anchor="middle">Cosmetics & Care</text></svg>') center/cover;"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="offer-section">
+        <div class="container">
+            <p class="offer-text">
+                <strong>Global SDS Authoring Center</strong> specializes in the creation and updating of Safety Data Sheets (SDS/MSDS) for all types of products, in strict compliance with national and international regulations. Whether you're a small business needing SDS authoring for a single product or a large enterprise with hundreds of products, we accommodate businesses of all sizes.
+            </p>
+            <p class="offer-text">
+                SDS creation is a complex and time-consuming process that requires specialized knowledge and experience. At Global SDS Authoring Center, all SDS documents are prepared by highly qualified PhD chemists, ensuring the highest standards of accuracy and compliance.
+            </p>
+
+            <h3 class="offer-heading">What we offer</h3>
+
+            <ul class="offer-list">
+                <li><strong>Creating Safety Data Sheet</strong> in compliance with national and global standards (OSHA, WHMIS, REACH, GHS)</li>
+                <li><strong>Translation</strong> of Safety Data Sheets into multiple languages</li>
+                <li><strong>Updating SDS</strong> documents to remain in compliance with current regulations, including <strong>conversion</strong> of old MSDS to SDS</li>
+                <li><strong>Tailored SDS authoring solutions</strong> for businesses of all sizes</li>
+                <li><strong>Consultation</strong> with expert chemists, including PhD holders from top North American universities</li>
+                <li><strong>Quick turnaround</strong> and precise documentation</li>
+                <li><strong>Seamless process</strong>—no special training or technical background required from your side</li>
+            </ul>
+
+            <div style="text-align: center;">
+                <a href="contact.html" class="btn-primary">Contact us now</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="regional-section">
+        <div class="container">
+            <h2 class="regional-title">Creating Safety Data Sheets for USA</h2>
+            <div class="divider-line"></div>
+
+            <p class="reg-text">
+                If your company manufactures, imports, blends, or distributes chemical products in the United States, you are legally required to provide an <strong>OSHA-compliant Safety Data Sheet (SDS)</strong> for each hazardous chemical. This requirement comes from the <a href="https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.1200" target="_blank" class="underline"><strong>Occupational Safety and Health Administration’s Hazard Communication Standard (HCS), 29 CFR 1910.1200</strong></a>, which aligns with the <a href="https://unece.org/about-ghs" target="_blank" class="underline"><strong>Globally Harmonized System of Classification and Labelling of Chemicals (GHS)</strong></a>.
+            </p>
+
+            <p class="reg-text">
+                An SDS is not just a formality—it is the primary source of hazard communication for workers, customers, emergency responders, and regulatory agencies. Improper or outdated SDSs can result in <strong>OSHA citations, regulatory fines, shipment delays, or even product recalls</strong>.
+            </p>
+
+            <h3 class="reg-subheading">What a U.S.-Compliant SDS Must Contain</h3>
+
+            <p class="reg-text">
+                OSHA requires that SDSs follow the <strong>standardized 16-section GHS format</strong>, in English, and contain specific, accurate information:
+            </p>
+
+            <ol class="section-list">
+                <li><strong>Identification</strong> – Product name, manufacturer/importer contact details, recommended uses, and restrictions.</li>
+                <li><strong>Hazard(s) Identification</strong> – GHS classification, signal word, hazard statements, precautionary statements, and hazard pictograms.</li>
+                <li><strong>Composition/Information on Ingredients</strong> – Exact chemical identities or generic descriptions, CAS numbers, and concentration ranges.</li>
+                <li><strong>First-Aid Measures</strong> – Immediate and delayed symptoms, required treatment.</li>
+                <li><strong>Fire-Fighting Measures</strong> – Suitable extinguishing media, hazards from combustion, protective equipment.</li>
+                <li><strong>Accidental Release Measures</strong> – Spill response, personal protective equipment (PPE), cleanup methods.</li>
+                <li><strong>Handling and Storage</strong> – Safe handling practices and storage requirements.</li>
+                <li><strong>Exposure Controls/Personal Protection</strong> – OSHA PELs, ACGIH TLVs, NIOSH RELs, engineering controls, PPE guidance.</li>
+                <li><strong>Physical and Chemical Properties</strong> – Appearance, odor, pH, flash point, solubility, vapor pressure, etc.</li>
+                <li><strong>Stability and Reactivity</strong> – Chemical stability, incompatible materials, hazardous decomposition products.</li>
+                <li><strong>Toxicological Information</strong> – Routes of exposure, acute/chronic effects, LD₅₀/LC₅₀ data, sensitization, carcinogenicity.</li>
+                <li><strong>Ecological Information</strong> – Environmental impact, persistence, and degradability.</li>
+                <li><strong>Disposal Considerations</strong> – Proper disposal, recycling, or reclamation.</li>
+                <li><strong>Transport Information</strong> – DOT classification, UN/NA number, hazard class, packing group, special transport notes.</li>
+                <li><strong>Regulatory Information</strong> – U.S.-specific references</li>
+                <li><strong>Other Information</strong> – Date of preparation or last revision, additional notes.</li>
+            </ol>
+
+            <div class="diagram-box">
+                <h3>U.S. SDS REQUIREMENTS</h3>
+                <p>If you manufacture, distribute, or import chemical products into the US, you need an SDS that is:</p>
+                <div class="diagram-card">OSHA COMPLIANT</div>
+                <div class="diagram-card">GHS FORMAT</div>
+                <div class="diagram-card">ACCURATE</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="regional-section">
+        <div class="container">
+            <h2 class="regional-title">Creating Safety Data Sheets for Canada</h2>
+            <div class="divider-line"></div>
+
+            <p class="reg-text">
+                If you sell, import, or distribute hazardous products in Canada, you must provide a <strong>Safety Data Sheet (SDS)</strong> that meets the requirements of the <a href="https://www.canada.ca/en/health-canada/corporate/about-health-canada/legislation-guidelines/acts-regulations/frequently-asked-questions-hazardous-products-regulations.html" target="_blank" class="underline"><strong>Hazardous Products Regulations (HPR)</strong></a> under the <a href="https://www.canada.ca/en/health-canada/services/environmental-workplace-health/occupational-health-safety/workplace-hazardous-materials-information-system.html" target="_blank" class="underline"><strong>Workplace Hazardous Materials Information System (WHMIS)</strong></a>.
+            </p>
+
+            <p class="reg-text">
+                Canadian SDS requirements follow the <a href="https://unece.org/about-ghs" target="_blank" class="underline"><strong>Globally Harmonized System (GHS)</strong></a> format, but include specific <strong>Canadian regulatory elements</strong> that differ from U.S. OSHA standards.
+            </p>
+
+            <h3 class="reg-subheading">Key Requirements for a Canadian SDS</h3>
+
+            <ul class="section-list">
+                <li><strong>Be in both English and French</strong> (bilingual requirement).</li>
+                <li><strong>Follow the 16-section GHS format</strong> as outlined in the HPR.</li>
+                <li><strong>Classify hazards according to WHMIS</strong> categories and subcategories.</li>
+                <li>Include <strong>Canadian-specific regulatory information</strong> (Ingredient disclosure thresholds, WHMIS pictograms, CEPA DSL/NDSL).</li>
+                <li>Provide <strong>supplier identification</strong> with a Canadian address or contact.</li>
+            </ul>
+
+            <div class="course-box">
+                <div class="course-img">
+                    <svg viewBox="0 0 100 100" width="100%" height="100%">
+                        <polygon points="50,15 90,35 50,55 10,35" fill="#023a4d"/>
+                        <rect x="25" y="45" width="50" height="20" rx="3" fill="#f5b813"/>
+                    </svg>
+                </div>
+                <div class="course-content">
+                    <h3>SDS Authoring Educational Courses</h3>
+                    <p>
+                        Global SDS Authoring Center hosts educational webinars and provides training covering all aspects of Safety Data Sheet (SDS/MSDS) preparation, update and management. The training is provided by our highly qualified chemistry PhD authors and instructors. Please <a href="contact.html" class="underline">contact</a> us for custom training options if you need to write, translate, or update SDS.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Professional Fat Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Column 1: Company Profile -->
+                <div class="footer-col">
+                    <h4>SDS WRITER, LLC</h4>
+                    <p>Professional Safety Data Sheet (SDS / MSDS) authoring, translation, and regulatory compliance services powered by PhD industrial chemists.</p>
+                    <div class="confidential-badge">
+                        <h5>🔒 Confidentiality Guaranteed</h5>
+                        <p>100% Non-Disclosure Agreement (NDA) protected for all chemical formulations and proprietary data.</p>
+                    </div>
+                </div>
+
+                <!-- Column 2: Quick Links -->
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="who-we-are.html">Who We Are</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="news.html">Regulatory News</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Standards -->
+                <div class="footer-col">
+                    <h4>Standards</h4>
+                    <ul>
+                        <li>OSHA HCS 2012 / 2024</li>
+                        <li>GHS Revision 7 / 8</li>
+                        <li>Canada WHMIS 2015</li>
+                        <li>EU REACH & CLP</li>
+                        <li>Amazon / Ecommerce SDS</li>
+                    </ul>
+                </div>
+
+                <!-- Column 4: Official Contact & Entity Info -->
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <ul class="contact-info-list">
+                        <li>
+                            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                            <span>7701 KARLOV AVE., SKOKIE, Cook-Not in City, of Chicago, IL, 60076</span>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 2.62 4.21 5.45 5.65l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                            <span>Phone: (650) 457-0571</span>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                            <span>Email: info@sdswriter.org</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <div>© 2026 SDS WRITER, LLC. All rights reserved.</div>
+                <div>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Disclaimer</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

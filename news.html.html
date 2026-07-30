@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SDS WRITER, LLC | Regulatory News</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; color: #111111; background-color: #f7f7f7; line-height: 1.6; }
+        a { color: inherit; text-decoration: none; }
+        a.underline { text-decoration: underline; color: #00607a; }
+        .container { max-width: 980px; margin: 0 auto; padding: 0 20px; }
+
+        /* Top Info Utility Bar */
+        .top-bar { background-color: #012433; color: #d1d5db; font-size: 12px; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .top-bar-flex { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .top-bar-contact { display: flex; gap: 20px; }
+        .top-bar-contact span { display: inline-flex; align-items: center; gap: 6px; }
+        .top-bar-badge { background-color: rgba(245, 184, 19, 0.2); color: #f5b813; padding: 2px 8px; border-radius: 3px; font-weight: bold; }
+
+        /* Main Header & Nav */
+        header.site-header { background-color: #ffffff; border-bottom: 1px solid #eaeaea; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.03); }
+        .header-inner { display: flex; justify-content: space-between; align-items: center; height: 85px; }
+        .logo-wrapper { display: flex; align-items: center; gap: 12px; cursor: pointer; }
+        .logo-svg { width: 50px; height: 42px; flex-shrink: 0; }
+        .logo-text { font-size: 32px; font-weight: 800; color: #023a4d; letter-spacing: -0.5px; font-family: Arial, Helvetica, sans-serif; }
+
+        nav.main-nav { display: flex; align-items: center; gap: 25px; }
+        nav.main-nav ul { display: flex; list-style: none; gap: 25px; align-items: center; }
+        nav.main-nav a { font-size: 13px; font-weight: bold; letter-spacing: 0.5px; color: #4a5568; text-transform: uppercase; transition: color 0.2s; }
+        nav.main-nav a:hover, nav.main-nav a.active { color: #00607a; }
+        
+        .btn-header-quote { background-color: #023a4d; color: #ffffff !important; padding: 10px 20px; border-radius: 4px; font-size: 12px; font-weight: bold; transition: background-color 0.2s; }
+        .btn-header-quote:hover { background-color: #00607a; }
+
+        /* Blog Page Layout */
+        .blog-container { padding: 40px 0 60px 0; }
+        .blog-category-label { font-size: 13px; color: #666; margin-bottom: 20px; }
+
+        .post-card { background-color: #ffffff; border: 1px solid #e1e1e1; border-radius: 4px; padding: 40px; margin-bottom: 30px; box-shadow: 0 1px 3px rgba(0,0,0,0.03); }
+        .post-title { font-size: 26px; font-weight: bold; color: #023a4d; margin-bottom: 20px; line-height: 1.3; }
+        .post-body { font-size: 14px; color: #222222; line-height: 1.7; text-align: justify; }
+        .post-body p { margin-bottom: 16px; }
+        .post-body ul, .post-body ol { padding-left: 20px; margin-bottom: 16px; }
+        .post-body li { margin-bottom: 8px; }
+
+        .post-footer { display: flex; align-items: center; gap: 18px; margin-top: 25px; padding-top: 15px; border-top: 1px solid #f0f0f0; color: #777777; font-size: 12px; }
+        .post-footer-item { display: flex; align-items: center; gap: 5px; cursor: pointer; }
+        .post-footer-item svg { width: 15px; height: 15px; fill: #777777; }
+
+        /* Professional Fat Footer */
+        footer.site-footer { background-color: #012433; color: #a0aec0; padding: 50px 0 20px 0; font-size: 14px; margin-top: 40px; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 2fr; gap: 40px; margin-bottom: 40px; }
+        .footer-col h4 { color: #ffffff; font-size: 16px; font-weight: bold; margin-bottom: 18px; border-bottom: 2px solid #f5b813; display: inline-block; padding-bottom: 5px; }
+        .footer-col p { margin-bottom: 10px; line-height: 1.6; }
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: 8px; }
+        .footer-col a:hover { color: #ffffff; text-decoration: underline; }
+        
+        .contact-info-list li { display: flex; gap: 10px; margin-bottom: 12px; }
+        .contact-info-list svg { width: 18px; height: 18px; fill: #f5b813; flex-shrink: 0; margin-top: 3px; }
+
+        .confidential-badge { background-color: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 15px; border-radius: 6px; margin-top: 15px; }
+        .confidential-badge h5 { color: #ffffff; font-size: 13px; font-weight: bold; margin-bottom: 5px; }
+        .confidential-badge p { font-size: 12px; color: #cbd5e1; margin-bottom: 0; }
+
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: #718096; }
+        .footer-bottom a { color: #a0aec0; text-decoration: underline; margin-left: 15px; }
+    </style>
+</head>
+<body>
+
+    <!-- Top Info Utility Bar -->
+    <div class="top-bar">
+        <div class="container top-bar-flex">
+            <div class="top-bar-contact">
+                <span>
+                    <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 2.62 4.21 5.45 5.65l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                    <strong>Call Us:</strong> (650) 457-0571
+                </span>
+                <span>
+                    <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    <strong>Email:</strong> info@sdswriter.org
+                </span>
+            </div>
+            <div>
+                <span class="top-bar-badge">PhD Chemists Authoring</span>
+                <span style="margin-left: 10px;">OSHA & GHS Compliant SDS / MSDS Services</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <div class="logo-wrapper" onclick="window.location.href='index.html'">
+                <svg class="logo-svg" viewBox="0 0 200 160">
+                    <path d="M 30,50 L 30,130 C 30,145 100,165 100,165 C 100,165 170,145 170,130 L 170,50 Z" fill="#00607a"/>
+                    <path d="M 50,20 L 50,115 C 50,130 100,148 100,148 C 100,148 150,130 150,115 L 150,20 Z" fill="#023a4d"/>
+                    <rect x="70" y="42" width="60" height="6" rx="3" fill="#ffffff"/>
+                    <rect x="70" y="58" width="60" height="6" rx="3" fill="#ffffff"/>
+                    <rect x="70" y="74" width="60" height="6" rx="3" fill="#ffffff"/>
+                    <rect x="70" y="90" width="36" height="6" rx="3" fill="#ffffff"/>
+                    <polygon points="160,10 188,48 132,48" fill="#f5b813" stroke="#ffffff" stroke-width="3" stroke-linejoin="round"/>
+                    <text x="160" y="42" font-family="Arial, sans-serif" font-weight="900" font-size="28" fill="#023a4d" text-anchor="middle">!</text>
+                </svg>
+                <span class="logo-text">sdswriter</span>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="who-we-are.html">WHO WE ARE</a></li>
+                    <li><a href="services.html">SERVICES</a></li>
+                    <li><a href="news.html" class="active">NEWS</a></li>
+                    <li><a href="contact.html">CONTACT US</a></li>
+                    <li><a href="contact.html" class="btn-header-quote">GET A QUOTE</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Blog Container -->
+    <main class="blog-container">
+        <div class="container">
+            <div class="blog-category-label">All Posts</div>
+
+            <!-- Card 1 -->
+            <article class="post-card">
+                <h2 class="post-title">OSHA requirements for arsenic-treated wood</h2>
+                <div class="post-body">
+                    <p>The OSHA interpretation letter from May 3, 2023, addresses concerns regarding arsenic-treated wood. The letter clarifies that the <strong>Inorganic Arsenic Standard (29 CFR § 1910.1018)</strong> does not cover arsenic-treated wood, which is a preservative used in certain types of lumber. However, OSHA acknowledges that this wood is still subject to the <strong>Hazard Communication Standard (HCS, 29 CFR § 1910.1200)</strong>. Under the HCS, employers of workers exposed to wood dust, including arsenic-treated wood, must provide appropriate hazard communication, including <strong>training</strong>, <strong>labels</strong>, and <strong>Safety Data Sheets (SDS)</strong>.</p>
+                    <p>This interpretation also highlights that while residential use of arsenic-treated wood largely ended in 2004, there are still potential exposures in construction and renovation work involving existing structures. OSHA reinforces that employers must ensure that workers are informed of the hazards associated with arsenic-treated wood, and that measures for worker protection, such as personal protective equipment (PPE) and training, must be in place.</p>
+                    <p>Additionally, the letter contrasts this approach with that for hexavalent chromium-treated wood, which is covered under OSHA's <strong>Hexavalent Chromium Standard</strong>. In contrast, no such coverage applies to arsenic-treated wood beyond the HCS. See more <a href="https://www.osha.gov/laws-regs/standardinterpretations/2023-05-03" target="_blank" class="underline">here</a>.</p>
+                </div>
+                <div class="post-footer">
+                    <div class="post-footer-item"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg> 1</div>
+                    <div class="post-footer-item"><svg viewBox="0 0 24 24"><path d="M21.99 4c0-1.1-.89-2-1.99-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4-.01-18z"/></svg> 0</div>
+                </div>
+            </article>
+
+            <!-- Card 2 -->
+            <article class="post-card">
+                <h2 class="post-title">OSHA HCS applicability to markers</h2>
+                <div class="post-body">
+                    <p>The OSHA Standard Interpretation dated November 21, 2023 addresses the applicability of the Hazard Communication Standard (HCS) 29 CFR 1910.1200 to industrial markers containing liquid paint or ink. The key point is that these markers, when containing hazardous chemicals, fall under the scope of HCS.</p>
+                    <ul>
+                        <li><strong>Labeling</strong>: Manufacturers and importers must label these products in compliance with the HCS, ensuring proper hazard communication. This includes providing appropriate hazard warnings and symbols on the product's label.</li>
+                        <li><strong>Safety Data Sheets (SDS)</strong>: An SDS must also be supplied for the industrial markers containing hazardous chemicals. These data sheets should cover all relevant safety and health information about the product's chemicals, per HCS standards.</li>
+                        <li><strong>End-User Obligations</strong>: Employers using these products must also comply with HCS by maintaining an up-to-date SDS and ensuring that workers are trained on the hazards and proper handling of these products.</li>
+                    </ul>
+                    <p>The interpretation reinforces that even for everyday products like markers, if hazardous chemicals are present, strict HCS rules apply. See more <a href="https://www.osha.gov/laws-regs/standardinterpretations/2023-11-21" target="_blank" class="underline">here</a>.</p>
+                </div>
+                <div class="post-footer">
+                    <div class="post-footer-item"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg> 0</div>
+                    <div class="post-footer-item"><svg viewBox="0 0 24 24"><path d="M21.99 4c0-1.1-.89-2-1.99-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4-.01-18z"/></svg> 0</div>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <!-- Professional Fat Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>SDS WRITER, LLC</h4>
+                    <p>Professional Safety Data Sheet (SDS / MSDS) authoring, translation, and regulatory compliance services powered by PhD industrial chemists.</p>
+                    <div class="confidential-badge">
+                        <h5>🔒 Confidentiality Guaranteed</h5>
+                        <p>100% Non-Disclosure Agreement (NDA) protected for all chemical formulations and proprietary data.</p>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="who-we-are.html">Who We Are</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="news.html">Regulatory News</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Standards</h4>
+                    <ul>
+                        <li>OSHA HCS 2012 / 2024</li>
+                        <li>GHS Revision 7 / 8</li>
+                        <li>Canada WHMIS 2015</li>
+                        <li>EU REACH & CLP</li>
+                        <li>Amazon / Ecommerce SDS</li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <ul class="contact-info-list">
+                        <li>
+                            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                            <span>7701 KARLOV AVE., SKOKIE, Cook-Not in City, of Chicago, IL, 60076</span>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 2.62 4.21 5.45 5.65l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                            <span>Phone: (650) 457-0571</span>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                            <span>Email: info@sdswriter.org</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div>© 2026 SDS WRITER, LLC. All rights reserved.</div>
+                <div>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Disclaimer</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
