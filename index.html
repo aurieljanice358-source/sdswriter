@@ -11,12 +11,14 @@
         a.underline { text-decoration: underline; }
         .container { max-width: 1140px; margin: 0 auto; padding: 0 20px; }
 
+        /* Top Info Utility Bar */
         .top-bar { background-color: #012433; color: #d1d5db; font-size: 12px; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
         .top-bar-flex { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
         .top-bar-contact { display: flex; gap: 20px; }
         .top-bar-contact span { display: inline-flex; align-items: center; gap: 6px; }
         .top-bar-badge { background-color: rgba(245, 184, 19, 0.2); color: #f5b813; padding: 2px 8px; border-radius: 3px; font-weight: bold; }
 
+        /* Main Header & Nav */
         header.site-header { background-color: #ffffff; border-bottom: 1px solid #eaeaea; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.03); }
         .header-inner { display: flex; justify-content: space-between; align-items: center; height: 85px; }
         
@@ -32,6 +34,7 @@
         .btn-header-quote { background-color: #023a4d; color: #ffffff !important; padding: 10px 20px; border-radius: 4px; font-size: 12px; font-weight: bold; transition: background-color 0.2s; }
         .btn-header-quote:hover { background-color: #00607a; }
 
+        /* Hero */
         .hero { background: linear-gradient(rgba(1, 36, 51, 0.88), rgba(1, 36, 51, 0.88)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><rect width="100" height="100" fill="%23222"/></svg>') center/cover; color: #ffffff; text-align: center; padding: 90px 20px; }
         .hero h1 { font-size: 42px; font-weight: 800; letter-spacing: 1px; margin-bottom: 15px; text-transform: uppercase; }
         .hero p { font-size: 22px; font-weight: 600; margin-bottom: 30px; color: #f1f2f6; }
@@ -41,6 +44,7 @@
         .btn-outline { display: inline-block; width: 100%; padding: 10px 0; border: 1px solid #023a4d; color: #023a4d; border-radius: 4px; font-weight: bold; font-size: 14px; text-align: center; }
         .btn-outline:hover { background-color: #023a4d; color: #ffffff; }
 
+        /* Sections */
         .cards-section { padding: 60px 0; background-color: #ffffff; }
         .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
         .card { border: 1px solid #e1e8ed; border-radius: 6px; padding: 30px 25px; text-align: center; background-color: #ffffff; display: flex; flex-direction: column; justify-content: space-between; }
@@ -56,8 +60,11 @@
         .industries-list-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px 30px; margin-bottom: 35px; }
         .industries-list-grid ul { list-style-type: disc; padding-left: 20px; }
         .industries-list-grid li { font-size: 15px; font-style: italic; color: #334155; margin-bottom: 8px; }
+        
+        /* Updated Industry Image Styles */
         .industries-images { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-        .industry-img { height: 140px; background-color: #cbd5e1; border-radius: 4px; width: 100%; }
+        .industry-img-container { height: 160px; border-radius: 6px; overflow: hidden; border: 1px solid #cbd5e1; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .industry-img-container img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
         .offer-section { padding: 60px 0; background-color: #ffffff; }
         .offer-text { font-size: 18px; color: #334155; text-align: justify; line-height: 1.7; margin-bottom: 20px; }
@@ -81,6 +88,7 @@
         .course-img { width: 100px; height: 100px; flex-shrink: 0; }
         .course-content h3 { font-family: 'Times New Roman', serif; font-size: 22px; color: #00607a; margin-bottom: 10px; }
 
+        /* Professional Fat Footer */
         footer.site-footer { background-color: #012433; color: #a0aec0; padding: 50px 0 20px 0; font-size: 14px; margin-top: 40px; }
         .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 2fr; gap: 40px; margin-bottom: 40px; }
         .footer-col h4 { color: #ffffff; font-size: 16px; font-weight: bold; margin-bottom: 18px; border-bottom: 2px solid #f5b813; display: inline-block; padding-bottom: 5px; }
@@ -98,6 +106,11 @@
 
         .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: #718096; }
         .footer-bottom a { color: #a0aec0; text-decoration: underline; margin-left: 15px; }
+
+        @media (max-width: 900px) {
+            .cards-grid, .industries-list-grid, .industries-images { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
     </style>
 </head>
 <body>
@@ -152,7 +165,7 @@
         </div>
     </header>
 
-    <!-- Main Content -->
+    <!-- Hero -->
     <section class="hero">
         <div class="container">
             <h1>GLOBAL SDS AUTHORING CENTER</h1>
@@ -161,6 +174,7 @@
         </div>
     </section>
 
+    <!-- Services Cards -->
     <section class="cards-section">
         <div class="container cards-grid">
             <div class="card">
@@ -210,6 +224,7 @@
         </div>
     </section>
 
+    <!-- Industries Served with Image Updates -->
     <section class="industries-section">
         <div class="container">
             <h2 class="section-title-teal">Industries Served</h2>
@@ -238,10 +253,17 @@
                 </ul>
             </div>
 
+            <!-- Industry Images Updated with Raw Github Links -->
             <div class="industries-images">
-                <div class="industry-img" style="background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="150"><rect width="300" height="150" fill="%23475569"/><text x="50%" y="50%" fill="%23fff" dominant-baseline="middle" text-anchor="middle">Heavy Industry / Machinery</text></svg>') center/cover;"></div>
-                <div class="industry-img" style="background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="150"><rect width="300" height="150" fill="%2300607a"/><text x="50%" y="50%" fill="%23fff" dominant-baseline="middle" text-anchor="middle">Paints & Chemicals</text></svg>') center/cover;"></div>
-                <div class="industry-img" style="background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="150"><rect width="300" height="150" fill="%23023a4d"/><text x="50%" y="50%" fill="%23fff" dominant-baseline="middle" text-anchor="middle">Cosmetics & Care</text></svg>') center/cover;"></div>
+                <div class="industry-img-container">
+                    <img src="https://raw.githubusercontent.com/aurieljanice358-source/sdswriter/main/HeavyIndustry.jpg" alt="Heavy Industry & Machinery">
+                </div>
+                <div class="industry-img-container">
+                    <img src="https://raw.githubusercontent.com/aurieljanice358-source/sdswriter/main/PaintsChemicals.jpg" alt="Paints & Chemical Manufacturing">
+                </div>
+                <div class="industry-img-container">
+                    <img src="https://raw.githubusercontent.com/aurieljanice358-source/sdswriter/main/CosmeticsCare.jpg" alt="Cosmetics & Personal Care">
+                </div>
             </div>
         </div>
     </section>
