@@ -11,12 +11,14 @@
         a.underline { text-decoration: underline; }
         .container { max-width: 1140px; margin: 0 auto; padding: 0 20px; }
 
+        /* Top Info Utility Bar */
         .top-bar { background-color: #012433; color: #d1d5db; font-size: 12px; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
         .top-bar-flex { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
         .top-bar-contact { display: flex; gap: 20px; }
         .top-bar-contact span { display: inline-flex; align-items: center; gap: 6px; }
         .top-bar-badge { background-color: rgba(245, 184, 19, 0.2); color: #f5b813; padding: 2px 8px; border-radius: 3px; font-weight: bold; }
 
+        /* Main Header & Nav */
         header.site-header { background-color: #ffffff; border-bottom: 1px solid #eaeaea; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.03); }
         .header-inner { display: flex; justify-content: space-between; align-items: center; height: 85px; }
         .logo-wrapper { display: flex; align-items: center; gap: 12px; cursor: pointer; }
@@ -31,6 +33,7 @@
         .btn-header-quote { background-color: #023a4d; color: #ffffff !important; padding: 10px 20px; border-radius: 4px; font-size: 12px; font-weight: bold; transition: background-color 0.2s; }
         .btn-header-quote:hover { background-color: #00607a; }
 
+        /* Services Page Styles */
         .services-header-title { font-size: 38px; font-weight: bold; color: #023a4d; text-align: center; padding: 50px 0 20px 0; }
         .service-row { padding: 50px 0; border-bottom: 1px solid #e2e8f0; }
         .service-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
@@ -38,11 +41,15 @@
         .service-content p { font-size: 17px; color: #475569; line-height: 1.8; margin-bottom: 18px; text-align: justify; }
         .service-content ol { padding-left: 20px; margin: 20px 0; font-size: 17px; color: #475569; }
         .service-content ol li { margin-bottom: 10px; }
-        .service-img-container { width: 100%; height: 360px; background-color: #f1f5f9; border: 1px solid #e2e8f0; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: #64748b; font-size: 16px; }
+        
+        /* Updated Image Container Styles */
+        .service-img-container { width: 100%; height: 360px; border-radius: 6px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border: 1px solid #e2e8f0; }
+        .service-img-container img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
         .btn-primary { display: inline-flex; align-items: center; gap: 8px; background-color: #00607a; color: #ffffff; padding: 12px 28px; border-radius: 4px; font-weight: bold; font-size: 15px; border: none; cursor: pointer; }
         .btn-primary:hover { background-color: #023a4d; }
 
+        /* Professional Fat Footer */
         footer.site-footer { background-color: #012433; color: #a0aec0; padding: 50px 0 20px 0; font-size: 14px; margin-top: 40px; }
         .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 2fr; gap: 40px; margin-bottom: 40px; }
         .footer-col h4 { color: #ffffff; font-size: 16px; font-weight: bold; margin-bottom: 18px; border-bottom: 2px solid #f5b813; display: inline-block; padding-bottom: 5px; }
@@ -60,10 +67,16 @@
 
         .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: #718096; }
         .footer-bottom a { color: #a0aec0; text-decoration: underline; margin-left: 15px; }
+
+        @media (max-width: 900px) {
+            .service-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
     </style>
 </head>
 <body>
 
+    <!-- Top Info Utility Bar -->
     <div class="top-bar">
         <div class="container top-bar-flex">
             <div class="top-bar-contact">
@@ -83,6 +96,7 @@
         </div>
     </div>
 
+    <!-- Header Navigation -->
     <header class="site-header">
         <div class="container header-inner">
             <div class="logo-wrapper" onclick="window.location.href='index.html'">
@@ -111,67 +125,72 @@
         </div>
     </header>
 
+    <!-- Services Main Container -->
     <div class="container">
         <h1 class="services-header-title">Safety Data Sheet Commercial Services</h1>
         
+        <!-- Service Row 1: SDS Creation -->
         <div class="service-row">
             <div class="service-grid">
                 <div class="service-content">
                     <h3>SDS creation for new products</h3>
                     <p>
-                        <strong>Global SDS Authoring Center</strong> specializes in the creation Safety Data Sheets (SDS/MSDS) for a wide range of products, ensuring compliance with both national and international regulations such as OSHA, WHMIS, REACH, and GHS. Whether you need an SDS for a single product or a comprehensive solution for hundreds of products, we cater to businesses of all sizes.
+                        <strong>Global SDS Authoring Center</strong> specializes in the creation Safety Data Sheets (SDS/MSDS) for a wide range of products, ensuring compliance with both national and international regulations such as OSHA, WHMIS, REACH, and GHS[cite: 5]. Whether you need an SDS for a single product or a comprehensive solution for hundreds of products, we cater to businesses of all sizes[cite: 5].
                     </p>
                     <p>
-                        SDS authoring is a complex and detail-oriented process that demands expertise and precision. At Global SDS Authoring Center, all SDS documents are meticulously crafted by professional chemists, including PhD graduates from top North American universities, guaranteeing that each document meets the highest standards of accuracy and regulatory compliance.
+                        SDS authoring is a complex and detail-oriented process that demands expertise and precision[cite: 5]. At Global SDS Authoring Center, all SDS documents are meticulously crafted by professional chemists, including PhD graduates from top North American universities, guaranteeing that each document meets the highest standards of accuracy and regulatory compliance[cite: 5].
                     </p>
-                    <p><strong>Our Process</strong><br>We make SDS authoring straightforward and efficient for our clients. Here’s how it works:</p>
+                    <p><strong>Our Process</strong><br>We make SDS authoring straightforward and efficient for our clients[cite: 5]. Here’s how it works[cite: 5]:</p>
                     <ol>
-                        <li><strong>Obtain a Quote</strong> – Reach out to us to request a customized quote based on your specific needs.</li>
-                        <li><strong>Submission of Product Information</strong> – Provide us with the necessary details about your product, such as composition and intended use.</li>
-                        <li><strong>Wait for Delivery</strong> – Typically, your completed SDS will be delivered within approximately one week.</li>
+                        <li><strong>Obtain a Quote</strong> – Reach out to us to request a customized quote based on your specific needs[cite: 5].</li>
+                        <li><strong>Submission of Product Information</strong> – Provide us with the necessary details about your product, such as composition and intended use[cite: 5].</li>
+                        <li><strong>Wait for Delivery</strong> – Typically, your completed SDS will be delivered within approximately one week[cite: 5].</li>
                     </ol>
                     <a href="get-a-quote.html" class="btn-primary">Get a Quote</a>
                 </div>
                 <div class="service-img-container">
-                    [ Image: https://github.com/aurieljanice358-source/sdswriter/blob/main/SDScreation.jpg ]
+                    <img src="https://raw.githubusercontent.com/aurieljanice358-source/sdswriter/main/SDScreation.jpg" alt="SDS Creation for new products">
                 </div>
             </div>
         </div>
 
+        <!-- Service Row 2: SDS Update -->
         <div class="service-row">
             <div class="service-grid">
                 <div class="service-img-container">
-                    [ Image: https://github.com/aurieljanice358-source/sdswriter/blob/main/SDSupdate.jpg ]
+                    <img src="https://raw.githubusercontent.com/aurieljanice358-source/sdswriter/main/SDSupdate.jpg" alt="SDS Update Service">
                 </div>
                 <div class="service-content">
                     <h3>SDS update</h3>
                     <p>
-                        Our Safety Data Sheet (SDS) Update Service ensures your chemical product information remains compliant with the latest regulations. We review and revise your existing SDS to reflect any changes in product composition, hazards, and regulatory updates. This helps your business stay aligned with OSHA, GHS, and other safety standards. By maintaining current and accurate SDSs, you reduce liability risks and provide essential information to protect employees and customers.
+                        Our Safety Data Sheet (SDS) Update Service ensures your chemical product information remains compliant with the latest regulations[cite: 5]. We review and revise your existing SDS to reflect any changes in product composition, hazards, and regulatory updates[cite: 5]. This helps your business stay aligned with OSHA, GHS, and other safety standards[cite: 5]. By maintaining current and accurate SDSs, you reduce liability risks and provide essential information to protect employees and customers[cite: 5].
                     </p>
                     <p>
-                        More on our updates and revisions services is available <a href="services.html" class="underline">here</a>.
+                        More on our updates and revisions services is available <a href="services.html" class="underline">here</a>[cite: 5].
                     </p>
                     <a href="get-a-quote.html" class="btn-primary">Get a Quote</a>
                 </div>
             </div>
         </div>
 
+        <!-- Service Row 3: SDS Translation -->
         <div class="service-row" style="border-bottom: none;">
             <div class="service-grid">
                 <div class="service-content">
                     <h3>SDS translation</h3>
                     <p>
-                        In a global economy, it is crucial to comply with national and regional Safety Data Sheet (SDS) regulations, which often require translation into the official language of the country where the product is sold or manufactured. At Global SDS Authoring Center, we provide high-quality technical translation services for SDS documents. However, to ensure complete compliance with all relevant regulations, we only translate SDS documents that were originally created or updated by our team.
+                        In a global economy, it is crucial to comply with national and regional Safety Data Sheet (SDS) regulations, which often require translation into the official language of the country where the product is sold or manufactured[cite: 5]. At Global SDS Authoring Center, we provide high-quality technical translation services for SDS documents[cite: 5]. However, to ensure complete compliance with all relevant regulations, we only translate SDS documents that were originally created or updated by our team[cite: 5].
                     </p>
                     <a href="get-a-quote.html" class="btn-primary">Get a Quote</a>
                 </div>
                 <div class="service-img-container">
-                    [ Image: https://github.com/aurieljanice358-source/sdswriter/blob/main/SDStranslation.jpg ]
+                    <img src="https://raw.githubusercontent.com/aurieljanice358-source/sdswriter/main/SDStranslation.jpg" alt="SDS Translation Service">
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Professional Fat Footer -->
     <footer class="site-footer">
         <div class="container">
             <div class="footer-grid">
