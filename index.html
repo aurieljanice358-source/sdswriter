@@ -6,7 +6,7 @@
     <title>SDS WRITER, LLC | Global SDS Authoring Center</title>
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; color: #333333; background-color: #ffffff; line-height: 1.6; }
+        body { font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; color: #333333; background-color: #ffffff; line-height: 1.6; -webkit-font-smoothing: antialiased; }
         a { color: inherit; text-decoration: none; }
         a.underline { text-decoration: underline; }
         .container { max-width: 1140px; margin: 0 auto; padding: 0 20px; }
@@ -61,7 +61,6 @@
         .industries-list-grid ul { list-style-type: disc; padding-left: 20px; }
         .industries-list-grid li { font-size: 15px; font-style: italic; color: #334155; margin-bottom: 8px; }
         
-        /* Updated Industry Image Styles */
         .industries-images { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
         .industry-img-container { height: 160px; border-radius: 6px; overflow: hidden; border: 1px solid #cbd5e1; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
         .industry-img-container img { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -88,7 +87,7 @@
         .course-img { width: 100px; height: 100px; flex-shrink: 0; }
         .course-content h3 { font-family: 'Times New Roman', serif; font-size: 22px; color: #00607a; margin-bottom: 10px; }
 
-        /* Professional Fat Footer */
+        /* Fat Footer */
         footer.site-footer { background-color: #012433; color: #a0aec0; padding: 50px 0 20px 0; font-size: 14px; margin-top: 40px; }
         .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 2fr; gap: 40px; margin-bottom: 40px; }
         .footer-col h4 { color: #ffffff; font-size: 16px; font-weight: bold; margin-bottom: 18px; border-bottom: 2px solid #f5b813; display: inline-block; padding-bottom: 5px; }
@@ -107,9 +106,33 @@
         .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: #718096; }
         .footer-bottom a { color: #a0aec0; text-decoration: underline; margin-left: 15px; }
 
-        @media (max-width: 900px) {
-            .cards-grid, .industries-list-grid, .industries-images { grid-template-columns: 1fr; }
-            .footer-grid { grid-template-columns: 1fr 1fr; }
+        /* Responsive Media Queries */
+        @media (max-width: 992px) {
+            .container { padding: 0 15px; }
+            .footer-grid { grid-template-columns: 1fr 1fr; gap: 30px; }
+        }
+
+        @media (max-width: 768px) {
+            .top-bar-flex { flex-direction: column; text-align: center; gap: 6px; }
+            .top-bar-contact { flex-direction: column; gap: 5px; }
+            .header-inner { height: auto; padding: 15px 0; flex-direction: column; gap: 15px; }
+            .logo-text { font-size: 26px; }
+            nav.main-nav ul { flex-wrap: wrap; justify-content: center; gap: 10px 15px; }
+            nav.main-nav a { font-size: 12px; padding: 4px 6px; }
+            
+            .hero { padding: 50px 15px; }
+            .hero h1 { font-size: 28px; }
+            .hero p { font-size: 16px; }
+            
+            .cards-grid, .industries-list-grid, .industries-images { grid-template-columns: 1fr; gap: 20px; }
+            .regional-title { font-size: 26px; }
+            .course-box { flex-direction: column; text-align: center; }
+        }
+
+        @media (max-width: 480px) {
+            .footer-grid { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
+            .footer-bottom div a { margin: 0 8px; }
         }
     </style>
 </head>
@@ -224,7 +247,7 @@
         </div>
     </section>
 
-    <!-- Industries Served with Image Updates -->
+    <!-- Industries Served -->
     <section class="industries-section">
         <div class="container">
             <h2 class="section-title-teal">Industries Served</h2>
@@ -253,7 +276,6 @@
                 </ul>
             </div>
 
-            <!-- Industry Images Updated with Raw Github Links -->
             <div class="industries-images">
                 <div class="industry-img-container">
                     <img src="https://raw.githubusercontent.com/aurieljanice358-source/sdswriter/main/HeavyIndustry.jpg" alt="Heavy Industry & Machinery">
